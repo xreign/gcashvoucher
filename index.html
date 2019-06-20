@@ -1,9 +1,118 @@
-<center><form action="https://formspree.io/markterrancelim@gmail.com" method="POST">
-  <br><br><br><br><br>
-  <span>DONATE YOUR VOUCHER HERE :)</span><br><br><br><br>
-  Your Name: <input type="text" name="name"><br><br>
-  Reference &nbsp;: <input type="text" name="refNumber"><br>
-  <br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Donation Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  
+  <script>
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 25, 2019 00:00:00").getTime();
 
-  <input type="submit" value="Send">
-</form>
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="timer"
+  document.getElementById("timer").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+<script>
+  angular.module('myApp', [])
+    .controller('myCtrl', ['$scope', function($scope) {
+      $scope.count = 0;
+      $scope.myFunc = function(name) {
+        $scope.name = name;
+      };
+	  
+	  $scope.myFunc2 = function(refNumber) {
+        $scope.refNumber = refNumber;
+		
+		if($scope.name&&$scope.refNumber !== (""||null)){
+		$scope.submit = true;
+		}
+      };
+    }]);
+</script>
+  
+  
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+	<li class="nav-item">
+      <a class="nav-link" href="#">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="https://www.facebook.com/groups/LVADP/?ref=br_rs">Facebook Page</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" href="https://www.facebook.com/groups/LVADP/permalink/2390360017719671/">Past Projects</a>
+    </li>
+  </ul>
+</nav>
+<div class="jumbotron text-center">
+  <h1>Lazada Vouchers and Discounts Philippines</h1>
+</div>
+  
+<div class="container">
+  <div class="row">
+  <div class="col-sm-5"><h1>Days before Christmas:</h1></div>
+	  <div class="col-sm-4">
+		<h1><p id="timer"></p></h1>
+	  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Send</h3>
+      <p>Send at least P1 to 09566683887</p>
+	  <p>Proceeds will be spent on Christmas Day!</p>
+      
+    </div>
+    <div class="col-sm-4">
+      <h3>Enter your name and Reference no.</h3>
+		<form action="https://formspree.io/markterrancelim@gmail.com" method="POST">
+		  Your Name: <input ng-change="myFunc(donorsname)" type="text" id="fName" name="name" ng-model="donorsname" ><br><br>
+		  Reference &nbsp;: <input ng-change="myFunc2(refNumber)" type="number" id="ref" name="refNumber" ng-model="refNumber" <br>
+		  <br><br>
+		  <center><input ng-show="submit" type="submit" value="Send">
+		</form>
+    </div>
+    <div class="col-sm-4">
+      <h3>Wait for updates!</h3>        
+      <p>Hi {{donorsname}}</p>
+      <p>Thank you! Please wait for the updates in the group!</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
+
+
