@@ -51,9 +51,19 @@ var x = setInterval(function() {
 	  
 	  $scope.myFunc2 = function(refNumber) {
         $scope.refNumber = refNumber;
+	
 		
-		if($scope.name&&$scope.refNumber !== (""||null)){
-		$scope.submit = true;
+		if($scope.name&&$scope.refNumber !== (""||null) ){
+		console.log($scope.refNumber);
+				if($scope.refNumber == '0'){
+				$scope.submit = true;
+				}
+				if((''+$scope.refNumber).length >=7 && (''+$scope.refNumber).length <=9){
+					$scope.submit = true;
+				}else{
+				console.log((''+$scope.refNumber).length)
+					$scope.submit = false;
+				}
 		}
       };
     }]);
